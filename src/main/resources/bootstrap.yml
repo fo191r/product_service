@@ -1,0 +1,29 @@
+spring:
+  cloud:
+    config:
+      uri: http://config-server:8888
+      fail-fast: false
+      retry:
+        max-attempts: 8
+        max-interval: 1000
+      name: product-service
+  profiles:
+    active: "${ACTIVE_PROFILE}"
+  data:
+    mongodb:
+      host: products_db
+      port: 27017
+      database: study
+  main:
+    allow-bean-definition-overriding: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-server:8761/eureka
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh, health
